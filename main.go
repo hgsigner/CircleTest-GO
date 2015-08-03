@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"os"
 	"strconv"
 )
 
@@ -68,12 +69,14 @@ func find_safer_place(slice []int, turn_start_cut_at int) int {
 	}
 
 }
-func run(slice []int, pos int, out io.Writer) {
-	//slice := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-	// processed := process_list(slice, 0)
-	// place := find_safer_place(processed, 0)
 
-	fmt.Fprintf(out, "hahah")
+func run(slice []int, pos int, out io.Writer) {
+	processed := process_list(slice, pos)
+	place := find_safer_place(processed, 0)
+
+	output := fmt.Sprintf("The safest place of the list starting from (%d) is: %d\n", pos, place)
+
+	fmt.Fprintf(out, output)
 }
 
 func main() {
@@ -82,6 +85,6 @@ func main() {
 	position := flag.Int("position", 0, "Set the position")
 	flag.Parse()
 
-	fmt.Println(mylist, *position)
+	run(mylist, *position, os.Stdout)
 
 }
