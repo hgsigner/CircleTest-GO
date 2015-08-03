@@ -33,6 +33,11 @@ var tests_safer_place_list = []struct {
 		0,
 		5,
 	},
+	{
+		[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+		4,
+		9,
+	},
 }
 
 func Test_Process_List_Func(t *testing.T) {
@@ -47,6 +52,7 @@ func Test_Find_Safer_Place(t *testing.T) {
 	a := assert.New(t)
 
 	for _, item := range tests_safer_place_list {
-		a.Equal(item.out, find_safer_place(item.in, item.pos))
+		proc := process_list(item.in, item.pos)
+		a.Equal(item.out, find_safer_place(proc, 0))
 	}
 }
