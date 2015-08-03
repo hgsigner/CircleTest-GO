@@ -12,6 +12,26 @@ type intslice []int
 
 var mylist intslice
 
+var Usage = func() {
+	fmt.Fprintf(os.Stderr, `
+NAME:
+  circle_array - Find the safest place on a list of integers
+USAGE:
+  circle_array [--options]
+VERSION:
+  %s
+COMMANDS:
+  help, h Shows a list of commands or help
+EXAMPLES:
+  circle_array -i "1" -i "2" -i "3" -i "4" -i "5" -position "0"
+OPTIONS:
+	`, Version)
+
+	flag.PrintDefaults()
+}
+
+var Version = "0.0.1"
+
 func (i *intslice) String() string {
 	return fmt.Sprintf("%d", *i)
 }
@@ -90,6 +110,7 @@ func main() {
 
 	flag.Var(&mylist, "i", "List of items")
 	position := flag.Int("position", 0, "Set the position starting by 0")
+	flag.Usage = Usage
 	flag.Parse()
 
 	run(mylist, *position, os.Stdout)
