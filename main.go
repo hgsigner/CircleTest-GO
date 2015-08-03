@@ -100,7 +100,7 @@ func run(slice []int, pos int, out io.Writer) {
 		processed := process_list(slice, pos)
 		place := find_safer_place(processed, 0)
 
-		output = fmt.Sprintf("The safest place of the list starting from (%d) is: %d\n", pos, place)
+		output = fmt.Sprintf("Your list is equal to %v\nYou're starting from the number %d\nThe safest place in the list is the number %d\n", slice, slice[pos], place)
 	}
 
 	fmt.Fprintf(out, output)
@@ -109,7 +109,7 @@ func run(slice []int, pos int, out io.Writer) {
 func main() {
 
 	flag.Var(&mylist, "i", "List of items")
-	position := flag.Int("position", 0, "Set the position starting by 0")
+	position := flag.Int("position", 0, "Set the position starting by 0 - Array index based")
 	flag.Usage = Usage
 	flag.Parse()
 

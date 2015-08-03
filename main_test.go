@@ -70,7 +70,9 @@ func Test_E2E_OK(t *testing.T) {
 
 	res := w.String()
 
-	assert.Contains(res, "The safest place of the list starting from (0) is: 5")
+	assert.Contains(res, "Your list is equal to [1 2 3 4 5 6 7 8 9 10]")
+	assert.Contains(res, "You're starting from the number 1")
+	assert.Contains(res, "The safest place in the list is the number 5")
 }
 
 func Test_E2E_Not_OK(t *testing.T) {
